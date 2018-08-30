@@ -1,10 +1,57 @@
 <template>
-  <div>
-    <nuxt/>
+  <div id="app">
+    <section class="nav">
+      <ul>
+        <li v-for="(item,index) in navList" :key="index" :class="{'current':item.name.toLowerCase() === $route.name}" @click="handleclick(item,index)">{{item.name}}</li>
+      </ul>
+    </section>
+    <section class="sidebar">
+      <div class="logo-title">
+      <div class="title">
+        <img src="../assets/image/logo@2x.png" alt="" width="127px">
+        <h3><a href="/">chiuwingyan's blog</a></h3>
+      </div>
+      </div>
+    </section>
+    <section class="content">
+       <nuxt/>
+    </section>
+   
   </div>
 </template>
 
-<style>
+<script>
+import nav from '../const/nav-const.js'
+export default {
+  mounted(){
+    if(this.$router.name === 'index'){
+      this.current = 'index'
+    }else{
+    console.log(this.navList.filter(this.filterNav))
+   this.current = this.navList.filter(this.filterNav)[0].name.toLowerCase();
+    }
+  },
+  data(){
+    return {
+      navList:nav.nav,
+      current:'index'
+    }
+  },
+  methods:{
+    handleclick(item,index){
+      this.current=index;
+      this.$router.push({path:`/${item.name.toLowerCase()}`})
+    },
+    filterNav(item){
+      console.log('item',item.name.toLowerCase())
+      console.log('router',this.$route)
+      return item.name.toLowerCase() === this.$route.name
+    }
+  }
+}
+</script>
+
+<style scoped>
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -48,6 +95,92 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+@media screen and (max-width:960px){
+  .nav{
+    width: 100% !important;
+  }
+  .content{
+    margin-top: 420px !important;
+    width: 100% !important;
+    z-index: 2 !important;
+    position: absolute !important;
+  }
+  .sidebar{
+    width: 100% !important;
+    position: absolute !important;
+    border-right:none !important;
+    z-index: 1 !important; 
+  }
+  .sidebar .logo-title{
+    padding-top: 120px !important;
+  }
+  .sidebar .logo-title .title img{
+    width: 100px !important;
+  }
+}
+.nav{
+  width: 60%;
+  position: fixed;
+  right: 0;
+  z-index: 3;
+  background-color: #fff;
+  height: 60px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.nav ul{
+  list-style: none;
+  padding: 18px 30px;
+  float: left;
+  font-size: 12px;
+}
+.nav ul li{
+  position: relative;
+  display: inline;
+  margin-right: 20px;
+  color:#5A5A5A;
+}
+.nav ul li.current{
+  padding-bottom:24px;
+  border-bottom:1px solid #5A5A5A;
+}
+
+.sidebar{
+  width: 40%;
+  background-size: cover;
+  background-color: #fff;
+  height: 100%;
+  transition: 0.8s;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 2;
+  border-right: 1px solid #f2f2f2;
+}
+.sidebar .logo-title{
+  text-align: center;
+  padding-top: 240px;
+}
+.sidebar h3{
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1;
+  margin: 0;
+
+}
+.sidebar h3 a{
+  text-decoration: none;
+  color: #464646;
+  font-size: 2rem;
+  font-weight: bold;
+}
+.content{
+  height: auto;
+  float: right;
+  width: 60%;
+  margin-top: 60px;
 }
 </style>
 
