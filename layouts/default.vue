@@ -2,7 +2,7 @@
   <div id="app">
     <section class="nav">
       <ul>
-        <li v-for="(item,index) in navList" :key="index" :class="{'current':item.name.toLowerCase() === $route.name}" @click="handleclick(item,index)">{{item.name}}</li>
+        <li v-for="(item,index) in navList" :key="index" :class="{'current':item.routerName === current}" @click="handleclick(item,index)">{{item.name}}</li>
       </ul>
     </section>
     <section class="sidebar">
@@ -24,28 +24,35 @@
 import nav from '../const/nav-const.js'
 export default {
   mounted(){
-    if(this.$router.name === 'index'){
+    if(this.$route.name === 'index' || this.$route.fullPath === '/home'){
       this.current = 'index'
     }else{
     console.log(this.navList.filter(this.filterNav))
-   this.current = this.navList.filter(this.filterNav)[0].name.toLowerCase();
+    if(this.navList.filter(this.filterNav)[0]){
+        this.current = this.navList.filter(this.filterNav)[0].name.toLowerCase();
+    }
     }
   },
   data(){
     return {
       navList:nav.nav,
-      current:'index'
+      current:''
     }
   },
   methods:{
     handleclick(item,index){
-      this.current=index;
-      this.$router.push({path:`/${item.name.toLowerCase()}`})
+      if(index === 0){
+        this.current= 'index'
+      }else{
+        
+        this.current = item.routerName;
+      }
+      this.$router.push({path:`/${index === 0? '':item.name.toLowerCase()}`})
     },
     filterNav(item){
       console.log('item',item.name.toLowerCase())
       console.log('router',this.$route)
-      return item.name.toLowerCase() === this.$route.name
+      return item.routerName === this.$route.name
     }
   }
 }
