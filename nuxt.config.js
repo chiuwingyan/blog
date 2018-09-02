@@ -26,6 +26,9 @@ module.exports = {
     */
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
+        const vueLoader = config.module.rules.find((rule) => rule.loader === 'vue-loader');
+        vueLoader.options.loaders.sass = 'vue-style-loader!css-loader!sass-loader';
+
         config.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

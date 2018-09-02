@@ -9,7 +9,7 @@
       <div class="logo-title">
       <div class="title">
         <img src="../assets/image/logo@2x.png" alt="" width="127px">
-        <h3><a href="/">chiuwingyan's blog</a></h3>
+        <h3><a href="/">{{name}}</a></h3>
       </div>
       </div>
     </section>
@@ -32,11 +32,13 @@ export default {
         this.current = this.navList.filter(this.filterNav)[0].name.toLowerCase();
     }
     }
+    this.name="chiuwingyan's blog"
   },
   data(){
     return {
       navList:nav.nav,
-      current:''
+      current:'',
+      name:''
     }
   },
   methods:{
