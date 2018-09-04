@@ -25,6 +25,7 @@ module.exports = {
     ** Run ESLint on save
     */
     extend (config, { isDev, isClient }) {
+      
       if (isDev && isClient) {
         const vueLoader = config.module.rules.find((rule) => rule.loader === 'vue-loader');
         vueLoader.options.loaders.sass = 'vue-style-loader!css-loader!sass-loader';
@@ -37,6 +38,17 @@ module.exports = {
         })
       }
     }
-  }
+  },
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
+  ],
+  axios: {
+    prefix: '/api/',
+    proxy: true,
+    baseURL: 'http://192.168.1.3:8181'
+  },
+  proxy: { '/api/': { target: 'http://192.168.1.3:8181', pathRewrite: { '^/api/': '' } } }
+
 }
 

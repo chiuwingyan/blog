@@ -27,7 +27,7 @@ export default {
     if(this.$route.name === 'index' || this.$route.fullPath === '/home'){
       this.current = 'index'
     }else{
-    console.log(this.navList.filter(this.filterNav))
+    //console.log(this.navList.filter(this.filterNav))
     if(this.navList.filter(this.filterNav)[0]){
         this.current = this.navList.filter(this.filterNav)[0].name.toLowerCase();
     }
@@ -52,8 +52,8 @@ export default {
       this.$router.push({path:`/${index === 0? '':item.name.toLowerCase()}`})
     },
     filterNav(item){
-      console.log('item',item.name.toLowerCase())
-      console.log('router',this.$route)
+    //  console.log('item',item.name.toLowerCase())
+      //console.log('router',this.$route)
       return item.routerName === this.$route.name
     }
   }
