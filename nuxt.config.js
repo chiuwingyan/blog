@@ -10,7 +10,8 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/font-awesome.min.css' }
     ]
   },
   /*
@@ -46,9 +47,9 @@ module.exports = {
   axios: {
     prefix: '/api/',
     proxy: true,
-    baseURL: 'http://192.168.1.3:8181'
+    //baseURL: 'http://192.168.1.4:8181'
   },
-  proxy: { '/api/': { target: 'http://192.168.1.3:8181', pathRewrite: { '^/api/': '' } } }
+  proxy: { '/api/': { target: 'http://192.168.1.4:8181', pathRewrite: { '^/api/': '' } } }
 
 }
 

@@ -9,7 +9,10 @@
       <div class="logo-title">
       <div class="title">
         <img src="../assets/image/logo@2x.png" alt="" width="127px">
-        <h3><a href="/">{{name}}</a></h3>
+        <h3><a href="/">{{$store.state.userInfo.blogTitle}}</a></h3>
+        <div class="description">
+          <p>{{$store.state.userInfo.blogDesc}}</p>
+        </div>
       </div>
       </div>
     </section>
@@ -60,7 +63,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss" ype="text/scss">
+
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
@@ -191,5 +195,13 @@ html {
   width: 60%;
   margin-top: 60px;
 }
+.sidebar .description{
+  font-size: 14px;
+  color:#565654;
+  p{
+    margin: 1em 0;
+  }
+}
+
 </style>
 
