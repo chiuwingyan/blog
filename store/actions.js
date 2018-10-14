@@ -1,4 +1,3 @@
-import axios from 'axios'
 export default{
     async nuxtServerInit({ dispatch, commit, getters }, { app,req, res }) {
         // 获取博主信息
@@ -7,11 +6,27 @@ export default{
         console.log(data)
     },
     //请求文章列表
-    async ARTICLES({ commit, state, getters }, page = 1, limit = 15) {
-        // const { data } = await this.$axios.get('/api/info')
-        // console.log(data)
+    async ARTICLES({ commit, state, getters }, page = 1) {
+        const { data } = await this.$axios.get(`/api/articles?page=${page}`)
+        commit('SET_ARTICLELIST',data)
+        console.log(data)
     },
-
+    //获取文章详情
+    async get_article_detail({ commit, state, getters },id){
+        return new Promise((resolve,reject)=>{
+            if (getters.detailMap[id]){
+                commit('SET_CURRENT', getters.detailMap[id])
+            }else{
+               this.$axios.get(`/api/article/${id}`).then((res)=>{
+                    console.log('res',res.data.data)
+                   commit('SET_DETAILS',res.data.data);
+                   commit('SET_CURRENT', res.data.data);
+                }).catch(reject);
+               
+            }
+            resolve();
+        })
+    }
    
  
 }

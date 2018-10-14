@@ -49,7 +49,7 @@ module.exports = {
     proxy: true,
     //baseURL: 'http://192.168.1.4:8181'
   },
-  proxy: { '/api/': { target: 'http://192.168.1.4:8181', pathRewrite: { '^/api/': '' } } }
+  proxy: { '/api/': { target: 'http://192.168.1.3:8181', pathRewrite: { '^/api/': '' } } }
 
 }
 

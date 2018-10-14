@@ -8,7 +8,11 @@ export default () => {
     return new Vuex.Store({
         state: {
             userInfo:{},
-            social:{}
+            social:{},
+            article_list:[],
+            total_article_list:null,
+            details:[],
+            current_detail:{}
         },
         getters,
         mutations,
