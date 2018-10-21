@@ -76,7 +76,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss" ype="text/scss">
+<style scoped lang="scss" type="text/scss">
 
 html {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -128,7 +128,7 @@ html {
   }
   .content{
     margin-top: 420px !important;
-    width: 100% !important;
+    width: 93% !important;
     z-index: 2 !important;
     position: absolute !important;
   }

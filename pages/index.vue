@@ -70,12 +70,6 @@ export default {
 </script>
 
 <style>
-.container {
- 
-
-
-}
-
 .title {
   font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
   display: block;

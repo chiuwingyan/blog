@@ -8,12 +8,15 @@ export default{
         state.total_article_list = data.data.totalCount;
     },
     SET_DETAILS(state,data){
-        console.log('data-1',data)
+      //  console.log('data-1',data)
         state.details.push(data)
-        console.log('state.details', state.details)
+      //  console.log('state.details', state.details)
     },
     SET_CURRENT(state,data){
         state.current_detail = data;
-        console.log('state.current_detail', state.current_detail)
+      //  console.log('state.current_detail', state.current_detail)
+    },
+    SET_COMMENT(state,data){
+        state.comment = data;
     }
 }

@@ -14,6 +14,18 @@ module.exports = {
       { rel: 'stylesheet', href: '/font-awesome.min.css' }
     ]
   },
+  router: {
+    scrollBehavior: function (to, from, savedPosition) {
+      console.log('test')
+          let position = {};
+          if (to.hash) {
+            // scroll to anchor by returning the selector
+            console.log('hash',to.hash)
+            position = { selector: to.hash }
+          }
+          return position;
+        }
+  },
   /*
   ** Customize the progress bar color
   */

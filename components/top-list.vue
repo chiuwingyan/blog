@@ -14,22 +14,14 @@
               </div>
           </div>
           <div class="post-footer">
-              <div class="meta">
-                  <div class="info">
-                      <i class="fa fa-sun-o" v-if="item.createTime"></i>
-                      <span class="date">{{item.createTime || item.updateTime}}</span>
-                      <i class="fa fa-comment-o"></i>
-                      <a :href="`/article/${item.articleId}#comment`">Comments</a>
-                      <i class="fa fa-tag" v-if="item.tagNames.length > 0"></i>
-                      <a class="tag" v-for="(a,key) in item.tagNames" :key="key">{{a}}</a>
-                  </div>
-              </div>
+              <Meta :item="item"/>
           </div>
       </li>
   </ul>
 </template>
 
 <script type="text/ecmascript-6">
+import  Meta from './meta'
 export default {
   props:{
       articles:{
@@ -42,8 +34,9 @@ export default {
 
     }
   },
-  components: {
 
+  components: {
+      Meta
   },
   methods:{
       godetail(id){
@@ -88,31 +81,7 @@ ul{
             }
 
         }
-        .post-footer{
-            padding: 0 0 30px 0;
-            border-bottom:1px solid #f2f2f2;
-            .meta{
-                max-width: 100%;
-                height: 25px;
-                color: #bbbbbb;
-                .info{
-                    float: left;
-                    font-size: 12px;
-                    i{
-                        margin-right: 6px;
-                    }
-                    .date{
-                        margin-right: 10px;
-                    }
-                    a{
-                        text-decoration: none;
-                        color: #bbbbbb;
-                        padding-right: 10px;
-                    }
 
-                }
-            }
-        }
     }
 }
 
